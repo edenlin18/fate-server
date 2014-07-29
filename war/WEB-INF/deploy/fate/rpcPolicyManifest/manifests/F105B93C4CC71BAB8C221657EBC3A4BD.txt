@@ -1,0 +1,2 @@
+serviceClass: com.fate.client.GreetingService
+path: DB8C30F4C17E805524FA01CC6E42F590.gwt.rpc

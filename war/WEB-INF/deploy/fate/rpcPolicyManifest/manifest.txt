@@ -1,0 +1,3 @@
+# Module fate
+# RPC service class, partial path of RPC policy file
+com.fate.client.GreetingService, DB8C30F4C17E805524FA01CC6E42F590.gwt.rpc
