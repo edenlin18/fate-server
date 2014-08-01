@@ -1,12 +1,11 @@
-package com.fate.server;
+package com.fate.server.users;
 
-public class PressUser extends AbstractUser {
-	
-	PressUser() {
-		super();
-		this.typeOfUser = "PressUser";
+public class StandardFateUser extends AbstractFateUser {
+
+	public StandardFateUser() {
+		this.typeOfUser = "StandardFateUser";
 	}
-
+	
 	@Override
 	public void forcedMatch() {
 		// TODO Auto-generated method stub

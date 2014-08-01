@@ -1,10 +1,9 @@
-package com.fate.server;
+package com.fate.server.users;
 
-public class StandardUser extends AbstractUser {
-
-	public StandardUser() {
-		super();
-		this.typeOfUser = "StandardUser";
+public class PaidFateUser extends AbstractFateUser {
+	
+	public PaidFateUser() {
+		this.typeOfUser = "StandardFateUser";
 	}
 	
 	@Override
@@ -18,5 +17,4 @@ public class StandardUser extends AbstractUser {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
