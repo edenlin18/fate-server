@@ -16,39 +16,40 @@ import com.google.appengine.api.datastore.Query;
 public class ForcedMatch {
 	
 	public static boolean CreateForcedMatch(String username1, String username2) {
-		Entity forced_match = getForcedMatch(username1, username2);
-		if(forced_match != null) {
+		Entity forcedMatch = getForcedMatch(username1, username2);
+		if(forcedMatch != null) {
 			return false;			
 		}
 		else {
-			forced_match = new Entity(Constant.FORCED_MATCH_KEY, username1 + username2);
-			forced_match.setProperty(Constant.FORCED_MATCH_KEY, username1 + username2);
-			forced_match.setProperty(Constant.USERNAME_1, username1);
-			forced_match.setProperty(Constant.USERNAME_2, username2);
+			//Key forcedMatchKey = KeyFactory.createKey(Constant.FORCED_MATCH_KEY, username1 + username2);
+			forcedMatch = new Entity(Constant.FORCED_MATCH, username1 + username2);
+			
+			forcedMatch.setProperty(Constant.USERNAME_1, username1);
+			forcedMatch.setProperty(Constant.USERNAME_2, username2);
 			
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
-			forced_match.setProperty(Constant.MATCH_DATE, dateFormat.format(date));
+			forcedMatch.setProperty(Constant.MATCH_DATE, dateFormat.format(date));
 	
-			DataStoreUtil.persistEntity(forced_match);
+			DataStoreUtil.persistEntity(forcedMatch);
 			return true;
 		}
 	}
 	
 	public static boolean DeleteForcedMatch(String username1, String username2) {
-		Entity forced_match = getForcedMatch(username1, username2);
-		if(forced_match == null) {
+		Entity forcedMatch = getForcedMatch(username1, username2);
+		if(forcedMatch == null) {
 			return false;
 		}
 		else {
-			Key key = KeyFactory.createKey(Constant.FORCED_MATCH_KEY, username1 + username2);
+			Key key = KeyFactory.createKey(Constant.FORCED_MATCH, username1 + username2);
 			DataStoreUtil.deleteEntity(key);
 			return true;
 		}
 	}
 	
 	public static Entity getForcedMatch (String username1, String username2) {
-		Key key = KeyFactory.createKey(Constant.FORCED_MATCH_KEY, username1 + username2);
+		Key key = KeyFactory.createKey(Constant.FORCED_MATCH, username1 + username2);
 		return DataStoreUtil.findEntity(key);
 	}
 	

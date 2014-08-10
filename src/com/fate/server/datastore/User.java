@@ -22,15 +22,17 @@ public class User {
 			return false;			
 		}
 		else {
-			user = new Entity(Constant.USER_KEY, username);
-			user.setProperty(Constant.USER_KEY, username);
+			//Key userKey = KeyFactory.createKey(Constant.USER_KEY, username);
+			user = new Entity(Constant.USER, username);
+			
+			user.setProperty(Constant.USERNAME, username);
 			
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
 			user.setProperty(Constant.SIGN_UP_DATE, dateFormat.format(date));
 			user.setProperty(Constant.LAST_UPDATE, dateFormat.format(date));
 		
-			user.setProperty(Constant.PASSWORD_KEY, password);
+			user.setProperty(Constant.PASSWORD, password);
 			user.setProperty(Constant.PHONE_NUMBER, phone_number);
 			user.setProperty(Constant.PREFERENCE, preference);
 			user.setProperty(Constant.ABOUT_ME, about_me);
@@ -51,7 +53,7 @@ public class User {
 			Date date = new Date();
 			user.setProperty(Constant.LAST_UPDATE, dateFormat.format(date));
 		
-			user.setProperty(Constant.PASSWORD_KEY, password);
+			user.setProperty(Constant.PASSWORD, password);
 			user.setProperty(Constant.PHONE_NUMBER, phone_number);
 			user.setProperty(Constant.PREFERENCE, preference);
 			user.setProperty(Constant.ABOUT_ME, about_me);
@@ -62,12 +64,12 @@ public class User {
 	}
 	
 	public static Entity getUser(String username) {
-		Key key = KeyFactory.createKey(Constant.USER_KEY, username);
+		Key key = KeyFactory.createKey(Constant.USER, username);
 		return DataStoreUtil.findEntity(key);
 	}
 	
 	public static Iterable<Entity> getAllUsers(){
-		return DataStoreUtil.listEntities(Constant.USER_KEY, null, null);
+		return DataStoreUtil.listEntities(Constant.USER, null, null);
 	}
 	
 	public static boolean verifyUser(String username, String password){
@@ -75,7 +77,7 @@ public class User {
 		if(user == null) {
 			return false;
 		}
-		String p = user.getProperty(Constant.PASSWORD_KEY).toString();
+		String p = user.getProperty(Constant.PASSWORD).toString();
 		return password.equals(p);
 	}
 	
@@ -84,7 +86,7 @@ public class User {
 	}
 	
 	public static List<Entity> getRegIds(String username){
-		Key key = KeyFactory.createKey(Constant.USER_KEY, username);
+		Key key = KeyFactory.createKey(Constant.USER, username);
 		Query q = new Query(Constant.GCM_ID_KEY).setAncestor(key);
 		PreparedQuery pq = DataStoreUtil.getDatastoreServiceInstance().prepare(q);
 		List<Entity> results =  pq.asList(FetchOptions.Builder.withDefaults());
@@ -92,15 +94,15 @@ public class User {
 	}
 	
 	public static List<Entity> getForcedMatch(String username){
-		Key key = KeyFactory.createKey(Constant.USER_KEY, username);
-		Query q = new Query(Constant.FORCED_MATCH_KEY).setAncestor(key);
+		Key key = KeyFactory.createKey(Constant.USER, username);
+		Query q = new Query(Constant.FORCED_MATCH).setAncestor(key);
 		PreparedQuery pq = DataStoreUtil.getDatastoreServiceInstance().prepare(q);
 		List<Entity> results =  pq.asList(FetchOptions.Builder.withDefaults());
 		return results;
 	}
 
 	public static List<Entity> getOperationHistory(String username, Date lastUpdate){
-		Key key = KeyFactory.createKey(Constant.USER_KEY, username);
+		Key key = KeyFactory.createKey(Constant.USER, username);
 		Query q = new Query(Constant.OPERATION_HISTROTY_KEY)
 					.setAncestor(key).setFilter(
 						new Query.FilterPredicate(
@@ -111,7 +113,7 @@ public class User {
 	}
 	
 	public static List<Entity> getOperationHistory(String username){
-		Key key = KeyFactory.createKey(Constant.USER_KEY, username);
+		Key key = KeyFactory.createKey(Constant.USER, username);
 		Query q = new Query(Constant.OPERATION_HISTROTY_KEY)
 					.setAncestor(key);
 		PreparedQuery pq = DataStoreUtil.getDatastoreServiceInstance().prepare(q);

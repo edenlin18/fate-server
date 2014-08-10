@@ -25,21 +25,24 @@ public class Constant {
 	
 	// Eden's edit
 	// User
-	public static final String USER_KEY = "User";
-	public static final String SIGN_UP_DATE = "Sign_Up_Date";
-	public static final String LAST_UPDATE = "Last_Update";
-	public static final String PREFERENCE = "Preference";
-	public static final String ABOUT_ME = "About_Me";
-	public static final String PHONE_NUMBER = "Phone_Number";
+	public static final String USER = "User";
+	public static final String USER_KEY = "User Key";
+	public static final String USERNAME = "username";
 	public static final String PASSWORD = "Password";
+	public static final String SIGN_UP_DATE = "Sign Up Date";
+	public static final String LAST_UPDATE = "Last Update";
+	public static final String PREFERENCE = "Preference";
+	public static final String ABOUT_ME = "About Me";
+	public static final String PHONE_NUMBER = "Phone Number";
 	
 	//Forced Match
-	public static final String FORCED_MATCH_KEY = "Forced_Match";
+	public static final String FORCED_MATCH = "Forced Match";
+	public static final String FORCED_MATCH_KEY = "Forced Match Key";
 	public static final String USERNAME_1 = "username1";
 	public static final String USERNAME_2 = "username2";
 	public static final String MATCH_DATE = "Match_Date";
 	
-	public static final String USERNAME = "username";
+	// public static final String USERNAME = "username";
 	// public static final String PASSWORD = "password";
 	public static final String ACTION = "action";
 	public static final String LOGIN = "login";

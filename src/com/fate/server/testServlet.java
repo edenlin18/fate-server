@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fate.server.datastore.Constant;
+import com.fate.server.datastore.ForcedMatch;
+import com.fate.server.datastore.User;
+import com.google.appengine.api.datastore.Entity;
+
 public class testServlet extends HttpServlet{
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -26,6 +31,13 @@ public class testServlet extends HttpServlet{
 		
 		if(username.equals("Eden") && password.equals("123123"))
 		{
+			User.CreateUser("Eden Lin", "12345678", "0000000000", "a, b, c", "I am Eden");
+			ForcedMatch.CreateForcedMatch("Eden Lin", "Vivian Chang");
+			out.write("In User");
+			if(User.DoesUsernameExist("Eden Lin") && ForcedMatch.DoesForcedMatchExist("Eden Lin", "Vivian Chang")) {
+				out.write("EXISTS");
+			}
+			
 			out.write("Yes!");			
 		}
 		else
