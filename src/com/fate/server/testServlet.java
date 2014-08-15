@@ -34,7 +34,7 @@ public class testServlet extends HttpServlet{
 			User.CreateUser("Eden Lin", "12345678", "0000000000", "a, b, c", "I am Eden");
 			ForcedMatch.CreateForcedMatch("Eden Lin", "Vivian Chang");
 			out.write("In User");
-			if(User.DoesUsernameExist("Eden Lin") && ForcedMatch.DoesForcedMatchExist("Eden Lin", "Vivian Chang")) {
+			if(User.DoesUserExist("Eden Lin") && ForcedMatch.DoesForcedMatchExist("Eden Lin", "Vivian Chang")) {
 				out.write("EXISTS");
 			}
 			

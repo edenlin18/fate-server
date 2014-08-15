@@ -20,7 +20,7 @@ public class DataStoreUtil {
 	private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();  
 	
 	public static void persistEntity(Entity entity) {
-	  	datastore.put(entity);  	
+	  	datastore.put(entity);
 	  }
 
 		/**
@@ -28,7 +28,7 @@ public class DataStoreUtil {
 		 * @param key : key to delete the entity from the persistent store
 		 */
 	  public static void deleteEntity(Key key) {
-	    datastore.delete(key);  	
+	    datastore.delete(key);
 	  }
 	  
 	  /**

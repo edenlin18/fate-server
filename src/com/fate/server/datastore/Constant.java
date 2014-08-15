@@ -42,6 +42,12 @@ public class Constant {
 	public static final String USERNAME_2 = "username2";
 	public static final String MATCH_DATE = "Match_Date";
 	
+	//Black List
+	public static final String BLACK_LIST = "Black List";
+	public static final String BLACKER = "Blacker";
+	public static final String BLACKEE = "Blackee";
+	public static final String BLACK_LIST_DATE = "Black list date";
+	
 	// public static final String USERNAME = "username";
 	// public static final String PASSWORD = "password";
 	public static final String ACTION = "action";

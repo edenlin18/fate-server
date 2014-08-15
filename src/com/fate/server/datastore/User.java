@@ -16,7 +16,7 @@ import com.google.appengine.api.datastore.Query;
 public class User {
 	
 	public static boolean CreateUser(String username, String password, 
-			String phone_number, String preference, String about_me) {
+			String phoneNumber, String preference, String aboutMe) {
 		Entity user = getUser(username);
 		if(user != null) {
 			return false;			
@@ -33,9 +33,9 @@ public class User {
 			user.setProperty(Constant.LAST_UPDATE, dateFormat.format(date));
 		
 			user.setProperty(Constant.PASSWORD, password);
-			user.setProperty(Constant.PHONE_NUMBER, phone_number);
+			user.setProperty(Constant.PHONE_NUMBER, phoneNumber);
 			user.setProperty(Constant.PREFERENCE, preference);
-			user.setProperty(Constant.ABOUT_ME, about_me);
+			user.setProperty(Constant.ABOUT_ME, aboutMe);
 		
 			DataStoreUtil.persistEntity(user);
 			return true;
@@ -43,7 +43,7 @@ public class User {
 	}
 	
 	public static boolean UpdateUser(String username, String password, 
-			String phone_number, String preference, String about_me) {
+			String phoneNumber, String preference, String aboutMe) {
 		Entity user = getUser(username);
 		if(user == null) {
 			return false;
@@ -54,9 +54,9 @@ public class User {
 			user.setProperty(Constant.LAST_UPDATE, dateFormat.format(date));
 		
 			user.setProperty(Constant.PASSWORD, password);
-			user.setProperty(Constant.PHONE_NUMBER, phone_number);
+			user.setProperty(Constant.PHONE_NUMBER, phoneNumber);
 			user.setProperty(Constant.PREFERENCE, preference);
-			user.setProperty(Constant.ABOUT_ME, about_me);
+			user.setProperty(Constant.ABOUT_ME, aboutMe);
 		
 			DataStoreUtil.persistEntity(user);
 			return true;
@@ -81,30 +81,43 @@ public class User {
 		return password.equals(p);
 	}
 	
-	public static boolean DoesUsernameExist(String username){
+	public static boolean DoesUserExist(String username){
 		return getUser(username) != null;
 	}
 	
+	public static boolean deleteUser(String username) {
+		if(User.getUser(username) != null) {
+			DataStoreUtil.deleteEntity(getUserKey(username));
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public static Key getUserKey(String username) {
+		Key userKey = KeyFactory.createKey(Constant.USER, username);
+		
+		return userKey;
+	}
+	
 	public static List<Entity> getRegIds(String username){
-		Key key = KeyFactory.createKey(Constant.USER, username);
-		Query q = new Query(Constant.GCM_ID_KEY).setAncestor(key);
+		Query q = new Query(Constant.GCM_ID_KEY).setAncestor(getUserKey(username));
 		PreparedQuery pq = DataStoreUtil.getDatastoreServiceInstance().prepare(q);
 		List<Entity> results =  pq.asList(FetchOptions.Builder.withDefaults());
 		return results;
 	}
 	
 	public static List<Entity> getForcedMatch(String username){
-		Key key = KeyFactory.createKey(Constant.USER, username);
-		Query q = new Query(Constant.FORCED_MATCH).setAncestor(key);
+		Query q = new Query(Constant.FORCED_MATCH).setAncestor(getUserKey(username));
 		PreparedQuery pq = DataStoreUtil.getDatastoreServiceInstance().prepare(q);
 		List<Entity> results =  pq.asList(FetchOptions.Builder.withDefaults());
 		return results;
 	}
 
 	public static List<Entity> getOperationHistory(String username, Date lastUpdate){
-		Key key = KeyFactory.createKey(Constant.USER, username);
 		Query q = new Query(Constant.OPERATION_HISTROTY_KEY)
-					.setAncestor(key).setFilter(
+					.setAncestor(getUserKey(username)).setFilter(
 						new Query.FilterPredicate(
 						Entity.KEY_RESERVED_PROPERTY, Query.FilterOperator.GREATER_THAN, lastUpdate.getTime()));
 		PreparedQuery pq = DataStoreUtil.getDatastoreServiceInstance().prepare(q);
@@ -120,5 +133,4 @@ public class User {
 		List<Entity> results =  pq.asList(FetchOptions.Builder.withDefaults());
 		return results;
 	}
-
 }

@@ -36,21 +36,13 @@ public class ForcedMatch {
 		}
 	}
 	
-	public static boolean DeleteForcedMatch(String username1, String username2) {
-		Entity forcedMatch = getForcedMatch(username1, username2);
-		if(forcedMatch == null) {
-			return false;
+	public static Entity getForcedMatch (String username1, String username2) {
+		if(User.getUser(username1) != null && User.getUser(username2) != null) {
+			return DataStoreUtil.findEntity(getForcedMatchKey(username1, username2));
 		}
 		else {
-			Key key = KeyFactory.createKey(Constant.FORCED_MATCH, username1 + username2);
-			DataStoreUtil.deleteEntity(key);
-			return true;
+			return null;
 		}
-	}
-	
-	public static Entity getForcedMatch (String username1, String username2) {
-		Key key = KeyFactory.createKey(Constant.FORCED_MATCH, username1 + username2);
-		return DataStoreUtil.findEntity(key);
 	}
 	
 	public static Iterable<Entity> getAllFordedMatches(){
@@ -61,4 +53,20 @@ public class ForcedMatch {
 		return getForcedMatch(username1, username2) != null;
 	}
 	
+	public static boolean DeleteForcedMatch(String username1, String username2) {
+		Entity forcedMatch = getForcedMatch(username1, username2);
+		if(forcedMatch == null) {
+			return false;
+		}
+		else {
+			DataStoreUtil.deleteEntity(getForcedMatchKey(username1, username2));
+			return true;
+		}
+	}
+	
+	public static Key getForcedMatchKey(String username1, String username2) {
+		Key forcedMatchKey = KeyFactory.createKey(Constant.FORCED_MATCH, username1 + username2);
+		
+		return forcedMatchKey;
+	}	
 }
