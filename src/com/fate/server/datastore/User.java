@@ -13,8 +13,25 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 
+/**
+ *<h1>User<h1> 
+ * The User class will be used to create "User" entity.
+ *
+ * @author  Eden Lin
+ * @version 1.0
+ * @since   2014-08-08 
+ */
 public class User {
-	
+	/**
+	 * This method is used to create an User entity.
+	 * 
+	 * @param username This is user's username
+	 * @param password  This is user's password(8 digits long)
+	 * @param phoneNumber This is user's phone number
+	 * @param preference This is user's dating preference
+	 * @param aboutMe This is the introduction of the user
+	 * @return boolean This returns success or failure of an entity creation.
+	 */
 	public static boolean CreateUser(String username, String password, 
 			String phoneNumber, String preference, String aboutMe) {
 		Entity user = getUser(username);
@@ -42,6 +59,16 @@ public class User {
 		}
 	}
 	
+	/**
+	 * This method is used to update an User entity.
+	 * 
+	 * @param username This is user's username
+	 * @param password  This is user's password(8 digits long)
+	 * @param phoneNumber This is user's phone number
+	 * @param preference This is user's dating preference
+	 * @param aboutMe This is the introduction of the user
+	 * @return boolean This returns success or failure of entity update.
+	 */
 	public static boolean UpdateUser(String username, String password, 
 			String phoneNumber, String preference, String aboutMe) {
 		Entity user = getUser(username);
@@ -63,15 +90,34 @@ public class User {
 		}
 	}
 	
+	/**
+	 * This method returns an User entity based on the username.
+	 * 
+	 * @param username This is user's username
+	 * @return Entity This returns an User entity based on the username.
+	 */
 	public static Entity getUser(String username) {
 		Key key = KeyFactory.createKey(Constant.USER, username);
 		return DataStoreUtil.findEntity(key);
 	}
 	
+	/**
+	 * This method returns an arraylist of all User entities.
+	 * 
+	 * @return Iterable<Entity> This returns an arraylist of all 
+	 * 							User entities.
+	 */
 	public static Iterable<Entity> getAllUsers(){
 		return DataStoreUtil.listEntities(Constant.USER, null, null);
 	}
 	
+	/**
+	 * This method verify user's account validity.
+	 * 
+	 * @param username This is user's username
+	 * @param password  This is user's password(8 digits long)
+	 * @return boolean This returns whether the verification passes or not.
+	 */
 	public static boolean verifyUser(String username, String password){
 		Entity user = getUser(username);
 		if(user == null) {
@@ -81,10 +127,22 @@ public class User {
 		return password.equals(p);
 	}
 	
+	/**
+	 * This method checks if the User entity based on the username existed or not .
+	 * 
+	 * @param username This is user's username
+	 * @return boolean This returns whether or not the User entity exists.
+	 */
 	public static boolean DoesUserExist(String username){
 		return getUser(username) != null;
 	}
 	
+	/**
+	 * This method deletes an User entity based on the username.
+	 * 
+	 * @param username This is user's username
+	 * @return boolean This returns whether or not the User is deleted.
+	 */
 	public static boolean deleteUser(String username) {
 		if(User.getUser(username) != null) {
 			DataStoreUtil.deleteEntity(getUserKey(username));
@@ -95,12 +153,41 @@ public class User {
 		}
 	}
 	
+	/**
+	 * This method returns a key based on the user name.
+	 * 
+	 * @param username This is user's username 
+	 * @return Key This returns a key of an User entity corresponding to the username.
+	 */
 	public static Key getUserKey(String username) {
 		Key userKey = KeyFactory.createKey(Constant.USER, username);
 		
 		return userKey;
 	}
 	
+	/**
+	 * This method returns .
+	 * 
+	 * @param 
+	 * @param
+	 * @param
+	 * @return .
+	 */
+	public static List<Entity> getForcedMatch(String username){
+		Query q = new Query(Constant.FORCED_MATCH).setAncestor(getUserKey(username));
+		PreparedQuery pq = DataStoreUtil.getDatastoreServiceInstance().prepare(q);
+		List<Entity> results =  pq.asList(FetchOptions.Builder.withDefaults());
+		return results;
+	}
+	
+	/**
+	 * This method returns .
+	 * 
+	 * @param 
+	 * @param
+	 * @param
+	 * @return .
+	 */
 	public static List<Entity> getRegIds(String username){
 		Query q = new Query(Constant.GCM_ID_KEY).setAncestor(getUserKey(username));
 		PreparedQuery pq = DataStoreUtil.getDatastoreServiceInstance().prepare(q);
@@ -108,13 +195,14 @@ public class User {
 		return results;
 	}
 	
-	public static List<Entity> getForcedMatch(String username){
-		Query q = new Query(Constant.FORCED_MATCH).setAncestor(getUserKey(username));
-		PreparedQuery pq = DataStoreUtil.getDatastoreServiceInstance().prepare(q);
-		List<Entity> results =  pq.asList(FetchOptions.Builder.withDefaults());
-		return results;
-	}
-
+	/**
+	 * This method returns .
+	 * 
+	 * @param 
+	 * @param
+	 * @param
+	 * @return .
+	 */
 	public static List<Entity> getOperationHistory(String username, Date lastUpdate){
 		Query q = new Query(Constant.OPERATION_HISTROTY_KEY)
 					.setAncestor(getUserKey(username)).setFilter(
@@ -125,6 +213,14 @@ public class User {
 		return results;
 	}
 	
+	/**
+	 * This method returns .
+	 * 
+	 * @param 
+	 * @param
+	 * @param
+	 * @return .
+	 */
 	public static List<Entity> getOperationHistory(String username){
 		Key key = KeyFactory.createKey(Constant.USER, username);
 		Query q = new Query(Constant.OPERATION_HISTROTY_KEY)
