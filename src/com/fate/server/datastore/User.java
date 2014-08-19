@@ -43,24 +43,24 @@ public class User {
 			//Key userKey = KeyFactory.createKey(Constant.USER_KEY, username);
 			user = new Entity(Constant.USER, username);
 			
-			user.setProperty(Constant.USERNAME, username);
+			user.setProperty(Constant.USER_USERNAME, username);
 			
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
 			user.setProperty(Constant.USER_SIGN_UP_DATE, dateFormat.format(date));
 			user.setProperty(Constant.USER_LAST_UPDATE, dateFormat.format(date));
 		
-			user.setProperty(Constant.PASSWORD, password);
-			user.setProperty(Constant.PHONE_NUMBER, phoneNumber);
+			user.setProperty(Constant.USER_PASSWORD, password);
+			user.setProperty(Constant.USER_PHONE_NUMBER, phoneNumber);
 			
 			// preferences
-			user.setProperty(Constant.MOVIE, movie);
-			user.setProperty(Constant.SPORT, sport);
-			user.setProperty(Constant.READING, reading);
-			user.setProperty(Constant.PET, pet);
-			user.setProperty(Constant.COOKING, cooking);
+			user.setProperty(Constant.USER_MOVIE, movie);
+			user.setProperty(Constant.USER_SPORT, sport);
+			user.setProperty(Constant.USER_READING, reading);
+			user.setProperty(Constant.USER_PET, pet);
+			user.setProperty(Constant.USER_COOKING, cooking);
 			
-			user.setProperty(Constant.ABOUT_ME, aboutMe);
+			user.setProperty(Constant.USER_ABOUT_ME, aboutMe);
 		
 			DataStoreUtil.persistEntity(user);
 			return true;
@@ -89,17 +89,17 @@ public class User {
 			Date date = new Date();
 			user.setProperty(Constant.USER_LAST_UPDATE, dateFormat.format(date));
 		
-			user.setProperty(Constant.PASSWORD, password);
-			user.setProperty(Constant.PHONE_NUMBER, phoneNumber);
+			user.setProperty(Constant.USER_PASSWORD, password);
+			user.setProperty(Constant.USER_PHONE_NUMBER, phoneNumber);
 			
 			// preferences
-			user.setProperty(Constant.MOVIE, movie);
-			user.setProperty(Constant.SPORT, sport);
-			user.setProperty(Constant.READING, reading);
-			user.setProperty(Constant.PET, pet);
-			user.setProperty(Constant.COOKING, cooking);
+			user.setProperty(Constant.USER_MOVIE, movie);
+			user.setProperty(Constant.USER_SPORT, sport);
+			user.setProperty(Constant.USER_READING, reading);
+			user.setProperty(Constant.USER_PET, pet);
+			user.setProperty(Constant.USER_COOKING, cooking);
 			
-			user.setProperty(Constant.ABOUT_ME, aboutMe);
+			user.setProperty(Constant.USER_ABOUT_ME, aboutMe);
 		
 			DataStoreUtil.persistEntity(user);
 			return true;
@@ -138,7 +138,7 @@ public class User {
 		if(user == null) {
 			return false;
 		}
-		String p = user.getProperty(Constant.PASSWORD).toString();
+		String p = user.getProperty(Constant.USER_PASSWORD).toString();
 		return password.equals(p);
 	}
 	

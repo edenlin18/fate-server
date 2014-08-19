@@ -15,7 +15,7 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.labs.repackaged.com.google.common.collect.Iterables;
 
 /**
- *<h1>User<h1> 
+ *<h1>Couple<h1> 
  * The Couple class will be used to create "Couple" entity.
  *
  * @author  Eden Lin
@@ -59,7 +59,7 @@ public class Couple {
 	 * @return Entity This returns a Couple entity based on the 
 	 * 				  couple1 and the couple2.
 	 */
-	public static Entity getCouple (String couple1, String couple2) {
+	public static Entity getCouple(String couple1, String couple2) {
 		if(User.getUser(couple1) != null && User.getUser(couple2) != null) {
 			return DataStoreUtil.findEntity(getCoupleKey(couple1, couple2));
 		}

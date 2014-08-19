@@ -15,7 +15,7 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.labs.repackaged.com.google.common.collect.Iterables;
 
 /**
- *<h1>User<h1> 
+ *<h1>Calendar<h1> 
  * The Calendar class will be used to create "Calendar" entity.
  *
  * @author  Eden Lin
@@ -50,20 +50,20 @@ public class Calendar {
 		else {
 			calendar = new Entity(Constant.CALENDAR, eventTitle + startTime, couple);
 			
-			calendar.setProperty(Constant.EVENT_TITLE, eventTitle);
-			calendar.setProperty(Constant.EVENT_DETAIL, eventDetail);
-			calendar.setProperty(Constant.LOCATION, location);
-			calendar.setProperty(Constant.START_TIME, startTime);
-			calendar.setProperty(Constant.END_TIME, endTime);
-			calendar.setProperty(Constant.REMINDER, reminder);
-			calendar.setProperty(Constant.REPEAT, repeat);
-			calendar.setProperty(Constant.ALERT_SELF_AT_TIME, alertSelfAtTime);
-			calendar.setProperty(Constant.ALERT_PARTNER_AT_TIME, alertPartnerAtTime);
+			calendar.setProperty(Constant.CALENDAR_EVENT_TITLE, eventTitle);
+			calendar.setProperty(Constant.CALENDAR_EVENT_DETAIL, eventDetail);
+			calendar.setProperty(Constant.CALENDAR_LOCATION, location);
+			calendar.setProperty(Constant.CALENDAR_START_TIME, startTime);
+			calendar.setProperty(Constant.CALENDAR_END_TIME, endTime);
+			calendar.setProperty(Constant.CALENDAR_REMINDER, reminder);
+			calendar.setProperty(Constant.CALENDAR_REPEAT, repeat);
+			calendar.setProperty(Constant.CALENDAR_ALERT_SELF_AT_TIME, alertSelfAtTime);
+			calendar.setProperty(Constant.CALENDAR_ALERT_PARTNER_AT_TIME, alertPartnerAtTime);
 			
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
-			calendar.setProperty(Constant.EVENT_CREATION_DATE, dateFormat.format(date));
-			calendar.setProperty(Constant.EVENT_LAST_UPDATE, dateFormat.format(date));
+			calendar.setProperty(Constant.CALENDAR_EVENT_CREATION_DATE, dateFormat.format(date));
+			calendar.setProperty(Constant.CALENDAR_EVENT_LAST_UPDATE, dateFormat.format(date));
 	
 			DataStoreUtil.persistEntity(calendar);
 			return true;
@@ -96,17 +96,17 @@ public class Calendar {
 		else {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
-			calendar.setProperty(Constant.EVENT_LAST_UPDATE, dateFormat.format(date));
+			calendar.setProperty(Constant.CALENDAR_EVENT_LAST_UPDATE, dateFormat.format(date));
 		
-			calendar.setProperty(Constant.EVENT_TITLE, eventTitle);
-			calendar.setProperty(Constant.EVENT_DETAIL, eventDetail);
-			calendar.setProperty(Constant.LOCATION, location);
-			calendar.setProperty(Constant.START_TIME, startTime);
-			calendar.setProperty(Constant.END_TIME, endTime);
-			calendar.setProperty(Constant.REMINDER, reminder);
-			calendar.setProperty(Constant.REPEAT, repeat);
-			calendar.setProperty(Constant.ALERT_SELF_AT_TIME, alertSelfAtTime);
-			calendar.setProperty(Constant.ALERT_PARTNER_AT_TIME, alertPartnerAtTime);
+			calendar.setProperty(Constant.CALENDAR_EVENT_TITLE, eventTitle);
+			calendar.setProperty(Constant.CALENDAR_EVENT_DETAIL, eventDetail);
+			calendar.setProperty(Constant.CALENDAR_LOCATION, location);
+			calendar.setProperty(Constant.CALENDAR_START_TIME, startTime);
+			calendar.setProperty(Constant.CALENDAR_END_TIME, endTime);
+			calendar.setProperty(Constant.CALENDAR_REMINDER, reminder);
+			calendar.setProperty(Constant.CALENDAR_REPEAT, repeat);
+			calendar.setProperty(Constant.CALENDAR_ALERT_SELF_AT_TIME, alertSelfAtTime);
+			calendar.setProperty(Constant.CALENDAR_ALERT_PARTNER_AT_TIME, alertPartnerAtTime);
 	
 			DataStoreUtil.persistEntity(calendar);
 			return true;
@@ -123,7 +123,7 @@ public class Calendar {
 	 * @return Entity This returns a Calendar entity based on the 
 	 * 				  eventTitle, the startTime, and the couple.
 	 */
-	public static Entity getCalendar (String eventTitle, String startTime, Key couple) {
+	public static Entity getCalendar(String eventTitle, String startTime, Key couple) {
 		return DataStoreUtil.findEntity(getCalendarKey(eventTitle, startTime, couple));
 	}
 	
@@ -170,15 +170,17 @@ public class Calendar {
 	 * @param eventTitle
 	 * @param startTime
 	 * @param couple
-	 * @return boolean This returns whether or not the Couple is deleted.
+	 * @return boolean This returns whether or not the Calendar is deleted.
 	 */
-	public static boolean DeleteCalendar(String eventTitle, String startTime, Key couple) {
+	public static boolean DeleteCalendar(String eventTitle, 
+			String startTime, Key couple) {
 		Entity canlendar = getCalendar(eventTitle, startTime, couple);
 		if(canlendar == null) {
 			return false;
 		}
 		else {
-			DataStoreUtil.deleteEntity(getCalendarKey(eventTitle, startTime, couple));
+			DataStoreUtil.deleteEntity(getCalendarKey(eventTitle, 
+					startTime, couple));
 			return true;
 		}
 	}

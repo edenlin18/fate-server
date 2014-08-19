@@ -60,7 +60,7 @@ public class ForcedMatch {
 	 * @return Entity This returns a Forced Match entity based on the 
 	 * 				  username1 and the username2.
 	 */
-	public static Entity getForcedMatch (String username1, String username2) {
+	public static Entity getForcedMatch(String username1, String username2) {
 		if(User.getUser(username1) != null && User.getUser(username2) != null) {
 			return DataStoreUtil.findEntity(getForcedMatchKey(username1, username2));
 		}
