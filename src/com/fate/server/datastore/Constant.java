@@ -29,24 +29,50 @@ public class Constant {
 	public static final String USER_KEY = "User Key";
 	public static final String USERNAME = "username";
 	public static final String PASSWORD = "Password";
-	public static final String SIGN_UP_DATE = "Sign Up Date";
-	public static final String LAST_UPDATE = "Last Update";
-	public static final String PREFERENCE = "Preference";
+	public static final String USER_SIGN_UP_DATE = "Sign Up Date";
+	public static final String USER_LAST_UPDATE = "Last Update";
+	// public static final String PREFERENCE = "Preference";
+	public static final String MOVIE = "Movie";
+	public static final String SPORT = "Sport";
+	public static final String READING = "Reading";
+	public static final String PET = "Pet";
+	public static final String COOKING = "Cooking";
 	public static final String ABOUT_ME = "About Me";
 	public static final String PHONE_NUMBER = "Phone Number";
 	
-	//Forced Match
+	// Forced Match
 	public static final String FORCED_MATCH = "Forced Match";
 	public static final String FORCED_MATCH_KEY = "Forced Match Key";
-	public static final String USERNAME_1 = "username1";
-	public static final String USERNAME_2 = "username2";
+	public static final String USERNAME_1 = "Username 1";
+	public static final String USERNAME_2 = "Username 2";
 	public static final String MATCH_DATE = "Match_Date";
 	
-	//Black List
+	// Black List
 	public static final String BLACK_LIST = "Black List";
 	public static final String BLACKER = "Blacker";
 	public static final String BLACKEE = "Blackee";
 	public static final String BLACK_LIST_DATE = "Black list date";
+	
+	// Couple
+	public static final String COUPLE = "Couple";
+	public static final String COUPLE_1 = "Couple 1";
+	public static final String COUPLE_2 = "Couple 2";
+	public static final String COUPLE_TOGETHER_SINCE = "Together Since";
+	
+	// Calendar
+	public static final String CALENDAR = "Calendar";
+	public static final String EVENT_TITLE = "Event Title";
+	public static final String EVENT_DETAIL = "Event Detail";
+	public static final String LOCATION = "Together Since";
+	public static final String START_TIME = "Start Time";
+	public static final String END_TIME = "End Time";
+	public static final String REMINDER = "Reminder";
+	public static final String REPEAT = "Repeat";
+	public static final String ALERT_SELF_AT_TIME = "Alert Self At Time";
+	public static final String ALERT_PARTNER_AT_TIME = "Alert Partnert At Time";
+	public static final String EVENT_CREATION_DATE = "Event Creation Date";
+	public static final String EVENT_LAST_UPDATE = "Event Last Update";
+	
 	
 	// public static final String USERNAME = "username";
 	// public static final String PASSWORD = "password";

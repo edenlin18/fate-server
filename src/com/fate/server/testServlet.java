@@ -31,7 +31,7 @@ public class testServlet extends HttpServlet{
 		
 		if(username.equals("Eden") && password.equals("123123"))
 		{
-			User.CreateUser("Eden Lin", "12345678", "0000000000", "a, b, c", "I am Eden");
+			User.CreateUser("Eden Lin", "12345678", "0000000000", "y", "y", "y", "y", "y", "I am Eden");
 			ForcedMatch.CreateForcedMatch("Eden Lin", "Vivian Chang");
 			out.write("In User");
 			if(User.DoesUserExist("Eden Lin") && ForcedMatch.DoesForcedMatchExist("Eden Lin", "Vivian Chang")) {

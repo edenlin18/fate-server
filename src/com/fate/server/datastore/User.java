@@ -33,7 +33,8 @@ public class User {
 	 * @return boolean This returns success or failure of an entity creation.
 	 */
 	public static boolean CreateUser(String username, String password, 
-			String phoneNumber, String preference, String aboutMe) {
+			String phoneNumber, String movie, String sport, 
+			String reading, String pet, String cooking, String aboutMe) {
 		Entity user = getUser(username);
 		if(user != null) {
 			return false;			
@@ -46,12 +47,19 @@ public class User {
 			
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
-			user.setProperty(Constant.SIGN_UP_DATE, dateFormat.format(date));
-			user.setProperty(Constant.LAST_UPDATE, dateFormat.format(date));
+			user.setProperty(Constant.USER_SIGN_UP_DATE, dateFormat.format(date));
+			user.setProperty(Constant.USER_LAST_UPDATE, dateFormat.format(date));
 		
 			user.setProperty(Constant.PASSWORD, password);
 			user.setProperty(Constant.PHONE_NUMBER, phoneNumber);
-			user.setProperty(Constant.PREFERENCE, preference);
+			
+			// preferences
+			user.setProperty(Constant.MOVIE, movie);
+			user.setProperty(Constant.SPORT, sport);
+			user.setProperty(Constant.READING, reading);
+			user.setProperty(Constant.PET, pet);
+			user.setProperty(Constant.COOKING, cooking);
+			
 			user.setProperty(Constant.ABOUT_ME, aboutMe);
 		
 			DataStoreUtil.persistEntity(user);
@@ -70,7 +78,8 @@ public class User {
 	 * @return boolean This returns success or failure of entity update.
 	 */
 	public static boolean UpdateUser(String username, String password, 
-			String phoneNumber, String preference, String aboutMe) {
+			String phoneNumber, String movie, String sport, 
+			String reading, String pet, String cooking, String aboutMe) {
 		Entity user = getUser(username);
 		if(user == null) {
 			return false;
@@ -78,11 +87,18 @@ public class User {
 		else {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
-			user.setProperty(Constant.LAST_UPDATE, dateFormat.format(date));
+			user.setProperty(Constant.USER_LAST_UPDATE, dateFormat.format(date));
 		
 			user.setProperty(Constant.PASSWORD, password);
 			user.setProperty(Constant.PHONE_NUMBER, phoneNumber);
-			user.setProperty(Constant.PREFERENCE, preference);
+			
+			// preferences
+			user.setProperty(Constant.MOVIE, movie);
+			user.setProperty(Constant.SPORT, sport);
+			user.setProperty(Constant.READING, reading);
+			user.setProperty(Constant.PET, pet);
+			user.setProperty(Constant.COOKING, cooking);
+			
 			user.setProperty(Constant.ABOUT_ME, aboutMe);
 		
 			DataStoreUtil.persistEntity(user);
@@ -97,8 +113,7 @@ public class User {
 	 * @return Entity This returns an User entity based on the username.
 	 */
 	public static Entity getUser(String username) {
-		Key key = KeyFactory.createKey(Constant.USER, username);
-		return DataStoreUtil.findEntity(key);
+		return DataStoreUtil.findEntity(getUserKey(username));
 	}
 	
 	/**
