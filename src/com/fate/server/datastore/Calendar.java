@@ -186,7 +186,7 @@ public class Calendar {
 	}
 	
 	/**
-	 * This method returns a key based on the eventTitle, 
+	 * This method returns a key of a Calendar entity based on the eventTitle, 
 	 * the startTime, and the couple.
 	 * 
 	 * @param eventTitle

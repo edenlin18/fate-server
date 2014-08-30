@@ -75,12 +75,41 @@ public class Constant {
 	
 	// Moment Event
 	public static final String MOMENT_EVENT = "Moment Event";
-	public static final String MOMENT_EVENT_TITLE = "Moment Event - Event Title";
+	public static final String MOMENT_EVENT_TITLE = "Moment Event - Title";
 	public static final String MOMENT_EVENT_DETAIL = "Moment Event - Detail";
 	public static final String MOMENT_EVENT_LOCATION = "Moment Event - Location";
 	public static final String MOMENT_EVENT_DATE_OF_EVENT = "Moment Event - Date Of Event";
 	public static final String MOMENT_EVENT_LAST_UPDATE = "Moment Event - Event Last Update";
 	
+	// Moment Memo
+	public static final String MOMENT_MEMO = "Moment Memo";
+	public static final String MOMENT_MEMO_TITLE = "Moment Memo - Title";
+	public static final String MOMENT_MEMO_CONTENT = "Moment Memo - Content";
+	public static final String MOMENT_MEMO_DATE_OF_MEMO = "Moment Memo - Date Of Memo";
+	public static final String MOMENT_MEMO_LAST_UPDATE = "Moment Memo - Memo Last Update";
+	
+	// Moment Text
+	public static final String MOMENT_TEXT = "Moment Text";
+	public static final String MOMENT_TEXT_TITLE = "Moment Text - Title";
+	public static final String MOMENT_TEXT_CONTENT = "Moment Text - Content";
+	public static final String MOMENT_TEXT_DATE_OF_MEMO = "Moment Text - Date Of Text";
+	public static final String MOMENT_TEXT_LAST_UPDATE = "Moment Text - Text Last Update";
+	
+	// Moment Picture
+	public static final String MOMENT_PICTURE = "Moment Picture";
+	public static final String MOMENT_PICTURE_TITLE = "Moment Picture - Title";
+	public static final String MOMENT_PICTURE_DESCRIPTION = "Moment Picture - Description";
+	public static final String MOMENT_PICTURE_URL = "Moment Picture - URL";	
+	public static final String MOMENT_PICTURE_DATE_OF_PICTURE = "Moment Picture - Date Of Picture";
+	public static final String MOMENT_PICTURE_LAST_UPDATE = "Moment Picture - Picture Last Update";
+	
+	// Moment Video
+	public static final String MOMENT_VIDEO = "Moment Video";
+	public static final String MOMENT_VIDEO_TITLE = "Moment Video - Title";
+	public static final String MOMENT_VIDEO_DESCRIPTION = "Moment Video - Description";
+	public static final String MOMENT_VIDEO_URL = "Moment Video - URL";	
+	public static final String MOMENT_VIDEO_DATE_OF_VIDEO = "Moment Video - Date Of Video";
+	public static final String MOMENT_VIDEO_LAST_UPDATE = "Moment Video - Video Last Update";
 	
 	// public static final String USERNAME = "username";
 	// public static final String PASSWORD = "password";

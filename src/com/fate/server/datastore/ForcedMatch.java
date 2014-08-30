@@ -24,7 +24,7 @@ import com.google.appengine.labs.repackaged.com.google.common.collect.Iterables;
  */
 public class ForcedMatch {
 	/**
-	 * This method is used to create a Forced Match entity.
+	 * This method is used to create a ForcedMatch entity.
 	 * 
 	 * @param username1 This is user one who is getting matched with user two
 	 * @param username2 This is user two who is getting matched with user one
@@ -52,12 +52,12 @@ public class ForcedMatch {
 	}
 	
 	/**
-	 * This method returns a Forced Match entity based on the username1 and 
+	 * This method returns a ForcedMatch entity based on the username1 and 
 	 * the username2.
 	 * 
 	 * @param username1 This is user one who is getting matched with user two
 	 * @param username2 This is user two who is getting matched with user one
-	 * @return Entity This returns a Forced Match entity based on the 
+	 * @return Entity This returns a ForcedMatch entity based on the 
 	 * 				  username1 and the username2.
 	 */
 	public static Entity getForcedMatch(String username1, String username2) {
@@ -70,20 +70,20 @@ public class ForcedMatch {
 	}
 	
 	/**
-	 * This method returns an arraylist of all Forced Match entities.
+	 * This method returns an arraylist of all ForcedMatch entities.
 	 * 
 	 * @return Iterable<Entity> This returns an arraylist of all 
-	 * 							Forced Match entities.
+	 * 							ForcedMatch entities.
 	 */
 	public static Iterable<Entity> getAllFordedMatches() {
 		return DataStoreUtil.listEntities(Constant.FORCED_MATCH, null, null);
 	}
 	
 	/**
-	 * This method returns an arraylist of all Forced Match entities of a 
+	 * This method returns an arraylist of all ForcedMatch entities of a 
 	 * particular user.
 	 * 
-	 * @return Iterable<Entity> This returns an arraylist of all Forced Match 
+	 * @return Iterable<Entity> This returns an arraylist of all ForcedMatch 
 	 * 							entities of a particular user.
 	 */
 	public static Iterable<Entity> getAllForcedMatches(String username) {
@@ -97,12 +97,12 @@ public class ForcedMatch {
 	}
 	
 	/**
-	 * This method checks if the Forced Match entity based on the username1 and the 
-	 * username2 existed or not .
+	 * This method checks if the ForcedMatch entity based on the username1 and the 
+	 * username2 existed or not.
 	 * 
 	 * @param username1 This is user one who is getting matched with user two
 	 * @param username2 This is user two who is getting matched with user one
-	 * @return boolean This returns whether or not the Forced Match entity exists.
+	 * @return boolean This returns whether or not the ForcedMatch entity exists.
 	 */
 	public static boolean DoesForcedMatchExist(String username1, 
 			String username2) {
@@ -110,12 +110,12 @@ public class ForcedMatch {
 	}
 	
 	/**
-	 * This method deletes a Forced Match entity based on the username1 
+	 * This method deletes a ForcedMatch entity based on the username1 
 	 * and the username2 
 	 * 
 	 * @param username1 This is user one who is getting matched with user two
 	 * @param username2 This is user two who is getting matched with user one
-	 * @return boolean This returns whether or not the Forced Match is deleted.
+	 * @return boolean This returns whether or not the ForcedMatch is deleted.
 	 */
 	public static boolean DeleteForcedMatch(String username1, String username2) {
 		Entity forcedMatch = getForcedMatch(username1, username2);
@@ -129,11 +129,12 @@ public class ForcedMatch {
 	}
 	
 	/**
-	 * This method returns a key based on the username1 and the username2.
+	 * This method returns a key of a ForcedMatch entity based on 
+	 * the username1 and the username2.
 	 * 
 	 * @param username1 This is user one who is getting matched with user two
 	 * @param username2 This is user two who is getting matched with user one
-	 * @return Key This returns a key of a Forced Match entity corresponding 
+	 * @return Key This returns a key of a ForcedMatch entity corresponding 
 	 * 			   to the username1 and the username2.
 	 */
 	public static Key getForcedMatchKey(String username1, String username2) {

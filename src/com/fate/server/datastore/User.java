@@ -169,7 +169,7 @@ public class User {
 	}
 	
 	/**
-	 * This method returns a key based on the user name.
+	 * This method returns a key of a User entity based on the user name.
 	 * 
 	 * @param username This is user's username 
 	 * @return Key This returns a key of an User entity corresponding to the username.

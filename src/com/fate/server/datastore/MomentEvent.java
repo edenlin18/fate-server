@@ -35,13 +35,13 @@ public class MomentEvent {
 	public static boolean CreateMomentEvent(String eventTitle, 
 			String eventDetail, String location, String dateOfEvent, 
 			Key couple) {
-		Entity momentEvent = getMomentEvent(eventTitle, dateOfEvent, couple);
+		Entity momentEvent = getMomentEvent(eventTitle, couple);
 		if(momentEvent != null) {
 			return false;			
 		}
 		else {
 			momentEvent = new Entity(Constant.MOMENT_EVENT, 
-					eventTitle + dateOfEvent, couple);
+					eventTitle + couple.toString(), couple);
 			
 			momentEvent.setProperty(Constant.MOMENT_EVENT_TITLE, eventTitle);
 			momentEvent.setProperty(Constant.MOMENT_EVENT_DETAIL, eventDetail);
@@ -68,20 +68,20 @@ public class MomentEvent {
 	public static boolean UpdateMomentEvent(String eventTitle, 
 			String eventDetail, String location, String dateOfEvent, 
 			Key couple) {
-		Entity momentEvent = getMomentEvent(eventTitle, dateOfEvent, couple);
+		Entity momentEvent = getMomentEvent(eventTitle, couple);
 		if(momentEvent == null) {
 			return false;
 		}
 		else {
+			// momentEvent.setProperty(Constant.MOMENT_EVENT_TITLE, eventTitle);
+			momentEvent.setProperty(Constant.MOMENT_EVENT_DETAIL, eventDetail);
+			momentEvent.setProperty(Constant.MOMENT_EVENT_LOCATION, location);
+			momentEvent.setProperty(Constant.MOMENT_EVENT_DATE_OF_EVENT, dateOfEvent);
+			
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
 			momentEvent.setProperty(Constant.MOMENT_EVENT_LAST_UPDATE, dateFormat.format(date));
 		
-			momentEvent.setProperty(Constant.MOMENT_EVENT_TITLE, eventTitle);
-			momentEvent.setProperty(Constant.MOMENT_EVENT_DETAIL, eventDetail);
-			momentEvent.setProperty(Constant.MOMENT_EVENT_LOCATION, location);
-			momentEvent.setProperty(Constant.MOMENT_EVENT_DATE_OF_EVENT, dateOfEvent);
-	
 			DataStoreUtil.persistEntity(momentEvent);
 			return true;
 		}
@@ -92,15 +92,13 @@ public class MomentEvent {
 	 * eventTitle, the startTime, and the couple.
 	 * 
 	 * @param eventTitle
-	 * @param startTime
 	 * @param couple
 	 * @return Entity This returns a MomentEvent entity based on the 
 	 * 				  eventTitle, the startTime, and the couple.
 	 */
-	public static Entity getMomentEvent(String eventTitle, 
-			String dateOfEvent, Key couple) {
+	public static Entity getMomentEvent(String eventTitle, Key couple) {
 		return DataStoreUtil.findEntity(getMomentEventKey(eventTitle, 
-				dateOfEvent, couple));
+				couple));
 	}
 	
 	/**
@@ -132,11 +130,12 @@ public class MomentEvent {
 	 * @param 
 	 * @param 
 	 * @param 
-	 * @return boolean This returns whether or not the MomentEvent entity exists.
+	 * @return boolean This returns whether or not the MomentEvent 
+	 *         entity exists.
 	 */
 	public static boolean DoesMomentEventExist(String eventTitle, 
-			String dateOfEvent, Key couple) {
-		return getMomentEvent(eventTitle, dateOfEvent, couple) != null;
+			Key couple) {
+		return getMomentEvent(eventTitle, couple) != null;
 	}
 	
 	/**
@@ -148,20 +147,19 @@ public class MomentEvent {
 	 * @param 
 	 * @return boolean This returns whether or not the MomentEvent is deleted.
 	 */
-	public static boolean DeleteMomentEvent(String eventTitle, 
-			String dateOfEvent, Key couple) {
-		Entity momentEvent = getMomentEvent(eventTitle, dateOfEvent, couple);
+	public static boolean DeleteMomentEvent(String eventTitle, Key couple) {
+		Entity momentEvent = getMomentEvent(eventTitle, couple);
 		if(momentEvent == null) {
 			return false;
 		}
 		else {
-			DataStoreUtil.deleteEntity(getMomentEventKey(eventTitle, dateOfEvent, couple));
+			DataStoreUtil.deleteEntity(getMomentEventKey(eventTitle, couple));
 			return true;
 		}
 	}
 	
 	/**
-	 * This method returns a key based on the eventTitle, 
+	 * This method returns a key of a MomentEvent entity based on the eventTitle, 
 	 * the startTime, and the couple.
 	 * 
 	 * @param 
@@ -170,10 +168,9 @@ public class MomentEvent {
 	 * @return Key This returns a key of a MomentEvent entity corresponding 
 	 * 			   to the couple.
 	 */
-	public static Key getMomentEventKey(String eventTitle, 
-			String dateOfEvent, Key couple) {
+	public static Key getMomentEventKey(String eventTitle, Key couple) {
 		Key MomentEventKey = KeyFactory.createKey(couple, 
-				Constant.MOMENT_EVENT, eventTitle + dateOfEvent);
+				Constant.MOMENT_EVENT, eventTitle + couple.toString());
 		
 		return MomentEventKey;
 	}	
